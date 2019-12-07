@@ -1,0 +1,208 @@
+<template>
+    <div>
+        <el-row>
+            <el-col :span="6" class="leftNav">
+                <div class="product newProduct">
+                    <h3 class="bigTitle">全部产品</h3>
+                    <h4 class="smallTitle">pc产品</h4>
+                    <ul>
+                        <li v-for="(item, index) in productList.pc" :key="index">
+                            <a :href="item.url">{{item.title}}</a>
+                        </li>
+                    </ul>
+                    <hr>
+                    <h4 class="smallTitle">应用产品</h4>
+                    <ul>
+                        <li v-for="(item, index) in productList.app" :key="index">
+                            <a :href="item.url">{{item.title}}</a>
+                        </li>
+                    </ul>
+                </div> 
+                <div class="product hotProduct">
+                    <h3 class="bigTitle">最新产品</h3>
+                    <ul>
+                        <li v-for="(item, index) in productList.newProject" :key="index">
+                            <a :href="item.url">{{item.title}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </el-col>
+            <el-col :md="17" :push="1">
+                <div class="right">
+                    <div class="banner">
+                        <div style="height:400px;background:red;">
+                            <img src="../assets/banner/0.jpg" alt="">
+                        </div>
+                    </div>
+                    <el-row :md="24" class="productList">
+                        <el-col :md="11" :class="[index%2 != 0?'el-col-offset-2':'']" v-for="(item, index) in jieshaoList" :key="index">
+                            <dl class="product">
+                                <dt><img :src="item.img"></dt>
+                                <dd class="title">{{item.title}}</dd>
+                                <dd class="jieshao">{{item.jieshao}}</dd>
+                                <dd class="btn" :data-id="item.id">立即购买</dd>
+                            </dl>
+                        </el-col>
+                    </el-row>
+                </div>
+            </el-col>
+        </el-row>
+    </div>
+</template>
+<script>
+import Img0 from '../assets/product/0.jpg'
+import Img1 from '../assets/product/1.jpg'
+import Img2 from '../assets/product/2.jpg'
+import Img3 from '../assets/product/3.jpg'
+export default {
+    data() {
+        return {
+            productList: {
+                pc: [
+                    {
+                        title: '数据统计',
+                        url: 'a'
+                    },
+                    {
+                        title: '数据预测',
+                        url: 'a'
+                    },
+                    {
+                        title: '流量分析',
+                        url: 'a'
+                    },
+                    {
+                        title: '广告发布',
+                        url: 'a'
+                    }
+                ],
+                app: [
+                    {
+                        title: '91助手',
+                        url: 'a'
+                    },
+                    {
+                        title: '产品助手',
+                        url: 'a'
+                    },
+                    {
+                        title: '智能地图',
+                        url: 'a'
+                    },
+                    {
+                        title: '团队语音',
+                        url: 'a'
+                    }
+                ],
+                newProject: [
+                    {
+                        title: '数据统计',
+                        url: 'a'
+                    },
+                    {
+                        title: '数据预测',
+                        url: 'a'
+                    },
+                    {
+                        title: '流量分析',
+                        url: 'a'
+                    },
+                    {
+                        title: '广告分析',
+                        url: 'a'
+                    }
+                ]
+            },
+            jieshaoList: [
+                {
+                    id: "1231",
+                    title: "开放产品",
+                    img: Img0,
+                    jieshao: "开放产品是一种开放产品"
+                },
+                {
+                    id: "20",
+                    title: "品牌营销",
+                    img: Img1,
+                    jieshao: "品牌营销品牌营销品牌营销"
+                },
+                {
+                    id: "14",
+                    title: "使命必达",
+                    img: Img2,
+                    jieshao: "使命必达使命必达使命必达"
+                },
+                {
+                    id: "3458",
+                    title: "勇攀高峰",
+                    img: Img3,
+                    jieshao: "勇攀高峰勇攀高峰勇攀高峰"
+                }
+            ]
+        }
+    },
+}
+</script>
+
+<style scoped lang="scss">
+$white: #fff;
+$left: left;
+    .leftNav{
+        background: $white;
+    }
+    .bigTitle{
+        background: #67C23A;
+        padding: 10px 5px;
+        color: $white;
+        margin: 0px 0px 10px;
+    }
+    .smallTitle{
+        padding-left: 10px;
+        margin: 0px 0px 10px;
+    }
+    .product ul{
+        padding-left: 25px;
+        margin-top: 0;
+    }
+    .product ul li{
+        line-height: 25px;
+    }
+    .product{
+        padding: 10px;
+        overflow: hidden;
+        background: $white;
+    }
+    .product dt img{
+        width: 80px;
+        height: 80px;
+    }
+    .product dt,
+    .product dd
+    {
+        float: $left;
+    }
+    .product dd{
+        width: 60%;
+    }
+    .product dd.title{
+        font-style: 20px;
+        font-weight: bolder;
+        margin-bottom: 5px;
+    }
+    .product dd.jieshao{
+        color: #333;
+        font-size: 14px;
+    }
+    .product dd.btn{
+        margin-top: 5px;
+        padding: 5px 10px;
+        width: 80px;
+        background: #67C23A;
+        text-align: center;
+        color: $white;
+    }
+    .banner img{
+        width: 100%;
+        height: 100%;
+    }
+</style>
