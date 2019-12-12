@@ -4,24 +4,21 @@
             <el-col :span="6" class="leftNav">
                 <div class="product newProduct">
                     <h3 class="bigTitle">全部产品</h3>
-                    <h4 class="smallTitle">pc产品</h4>
-                    <ul>
-                        <li v-for="(item, index) in productList.pc" :key="index">
-                            <a :href="item.url">{{item.title}}</a>
-                        </li>
-                    </ul>
-                    <hr>
-                    <h4 class="smallTitle">应用产品</h4>
-                    <ul>
-                        <li v-for="(item, index) in productList.app" :key="index">
-                            <a :href="item.url">{{item.title}}</a>
-                        </li>
-                    </ul>
+                    <template v-for="(product, index) in productList">
+                        <h4 class="smallTitle" :key="index+1">{{product.title}}</h4>
+                        <ul :key="index">
+                            <li v-for="(item, i) in product.list" :key="i">
+                                <a :href="item.url">{{item.title}}</a>
+                                <span class="hot" v-if="item.hot">hot</span>
+                            </li>
+                        </ul>
+                        <hr :key="index" v-if="!product.last">
+                    </template>
                 </div> 
                 <div class="product hotProduct">
                     <h3 class="bigTitle">最新产品</h3>
                     <ul>
-                        <li v-for="(item, index) in productList.newProject" :key="index">
+                        <li v-for="(item, index) in newProject" :key="index">
                             <a :href="item.url">{{item.title}}</a>
                         </li>
                     </ul>
@@ -58,61 +55,71 @@ export default {
     data() {
         return {
             productList: {
-                pc: [
-                    {
-                        title: '数据统计',
-                        url: 'a'
-                    },
-                    {
-                        title: '数据预测',
-                        url: 'a'
-                    },
-                    {
-                        title: '流量分析',
-                        url: 'a'
-                    },
-                    {
-                        title: '广告发布',
-                        url: 'a'
-                    }
-                ],
-                app: [
-                    {
-                        title: '91助手',
-                        url: 'a'
-                    },
-                    {
-                        title: '产品助手',
-                        url: 'a'
-                    },
-                    {
-                        title: '智能地图',
-                        url: 'a'
-                    },
-                    {
-                        title: '团队语音',
-                        url: 'a'
-                    }
-                ],
-                newProject: [
-                    {
-                        title: '数据统计',
-                        url: 'a'
-                    },
-                    {
-                        title: '数据预测',
-                        url: 'a'
-                    },
-                    {
-                        title: '流量分析',
-                        url: 'a'
-                    },
-                    {
-                        title: '广告分析',
-                        url: 'a'
-                    }
-                ]
+                pc: {
+                    title: "pc产品",
+                    list: [
+                        {
+                            title: '数据统计',
+                            url: 'a'
+                        },
+                        {
+                            title: '数据预测',
+                            url: 'a',
+                            hot: true
+                        },
+                        {
+                            title: '流量分析',
+                            url: 'a'
+                        },
+                        {
+                            title: '广告发布',
+                            url: 'a'
+                        }
+                    ]
+                },
+                app:{
+                    title: "app产品",
+                    last: true,
+                    list: [
+                        {
+                            title: '91助手',
+                            url: 'a'
+                        },
+                        {
+                            title: '产品助手',
+                            url: 'a',
+                            hot: false
+                        },
+                        {
+                            title: '智能地图',
+                            url: 'a'
+                        },
+                        {
+                            title: '团队语音',
+                            url: 'a',
+                            hot: true
+                        }
+                    ]
+                }
             },
+            newProject: [
+                {
+                    title: '数据统计',
+                    url: 'a'
+                },
+                {
+                    title: '数据预测',
+                    url: 'a'
+                },
+                {
+                    title: '流量分析',
+                    url: 'a'
+                },
+                {
+                    title: '广告分析',
+                    url: 'a'
+                }
+            ],
             jieshaoList: [
                 {
                     id: "1231",
@@ -166,6 +173,19 @@ $left: left;
     }
     .product ul li{
         line-height: 25px;
+    }
+    .product ul li a{
+        text-decoration: none;
+        color: #333;
+    }
+    .product ul li a:hover{
+        color: green;
+    }
+    .product ul li .hot{
+        color: $white;
+        background: red;
+        padding: 0 5px;
+        border-radius: 5px;
     }
     .product{
         padding: 10px;
