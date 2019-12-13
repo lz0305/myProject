@@ -5,14 +5,14 @@
                 <div class="product newProduct">
                     <h3 class="bigTitle">全部产品</h3>
                     <template v-for="(product, index) in productList">
-                        <h4 class="smallTitle" :key="index+1">{{product.title}}</h4>
-                        <ul :key="index">
+                        <h4 class="smallTitle" :key="index">{{product.title}}</h4>
+                        <ul :key="index+1">
                             <li v-for="(item, i) in product.list" :key="i">
                                 <a :href="item.url">{{item.title}}</a>
                                 <span class="hot" v-if="item.hot">hot</span>
                             </li>
                         </ul>
-                        <hr :key="index" v-if="!product.last">
+                        <hr :key="index+2" v-if="!product.last">
                     </template>
                 </div> 
                 <div class="product hotProduct">
@@ -20,6 +20,7 @@
                     <ul>
                         <li v-for="(item, index) in newProject" :key="index">
                             <a :href="item.url">{{item.title}}</a>
+                                <span class="hot" v-if="item.hot">hot</span>
                         </li>
                     </ul>
                 </div>
@@ -32,7 +33,10 @@
                         </div>
                     </div>
                     <el-row :md="24" class="productList">
-                        <el-col :md="11" :class="[index%2 != 0?'el-col-offset-2':'']" v-for="(item, index) in jieshaoList" :key="index">
+                        <el-col :md="11" 
+                        :class="[index%2 != 0?'el-col-offset-2':'']" 
+                        v-for="(item, index) in jieshaoList" 
+                        :key="index">
                             <dl class="product">
                                 <dt><img :src="item.img"></dt>
                                 <dd class="title">{{item.title}}</dd>
@@ -52,6 +56,9 @@ import Img1 from '../assets/product/1.jpg'
 import Img2 from '../assets/product/2.jpg'
 import Img3 from '../assets/product/3.jpg'
 export default {
+    created() {
+        this
+    },
     data() {
         return {
             productList: {
@@ -113,7 +120,8 @@ export default {
                 },
                 {
                     title: '流量分析',
-                    url: 'a'
+                    url: 'a',
+                    hot: true
                 },
                 {
                     title: '广告分析',
