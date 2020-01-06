@@ -102,6 +102,9 @@ export default {
   body{
     background:#ddd;
   }
+  .app-content{
+    margin-bottom: 50px;
+  }
   /* footer */
   .el-footer{
     background: #c5cad8;
