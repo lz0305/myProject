@@ -27,11 +27,7 @@
             </el-col>
             <el-col :md="17" :push="1">
                 <div class="right">
-                    <div class="banner">
-                        <div style="height:400px;background:red;">
-                            <img src="../assets/banner/0.jpg" alt="">
-                        </div>
-                    </div>
+                    <slideShow :slides="slides"></slideShow>
                     <el-row :md="24" class="productList">
                         <el-col :md="11" 
                         :class="[index%2 != 0?'el-col-offset-2':'']" 
@@ -51,13 +47,13 @@
     </div>
 </template>
 <script>
-import Img0 from '../assets/product/0.jpg'
-import Img1 from '../assets/product/1.jpg'
-import Img2 from '../assets/product/2.jpg'
-import Img3 from '../assets/product/3.jpg'
+import slideShow from './sildeShow'
 export default {
     created() {
-        this
+        
+    },
+    components: {
+        slideShow
     },
     data() {
         return {
@@ -132,27 +128,49 @@ export default {
                 {
                     id: "1231",
                     title: "开放产品",
-                    img: Img0,
+                    img: require("../assets/product/0.jpg"),
                     jieshao: "开放产品是一种开放产品"
                 },
                 {
                     id: "20",
                     title: "品牌营销",
-                    img: Img1,
+                    img: require("../assets/product/1.jpg"),
                     jieshao: "品牌营销品牌营销品牌营销"
                 },
                 {
                     id: "14",
                     title: "使命必达",
-                    img: Img2,
+                    img: require("../assets/product/2.jpg"),
                     jieshao: "使命必达使命必达使命必达"
                 },
                 {
                     id: "3458",
                     title: "勇攀高峰",
-                    img: Img3,
+                    img: require("../assets/product/3.jpg"),
                     jieshao: "勇攀高峰勇攀高峰勇攀高峰"
                 }
+            ],
+            slides: [
+                {
+                    title: "熊",
+                    src: require("../assets/banner/0.jpg"),
+                    href: "./image0"
+                },
+                {
+                    title: "狗",
+                    src: require("../assets/banner/1.jpg"),
+                    href: "./image1"
+                },
+                {
+                    title: "猫",
+                    src: require("../assets/banner/2.jpg"),
+                    href: "./image2"
+                },
+                {
+                    title: "金毛",
+                    src: require("../assets/banner/3.jpg"),
+                    href: "./image3"
+                },
             ]
         }
     },
@@ -228,9 +246,5 @@ $left: left;
         background: #67C23A;
         text-align: center;
         color: $white;
-    }
-    .banner img{
-        width: 100%;
-        height: 100%;
     }
 </style>
