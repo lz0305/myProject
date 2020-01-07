@@ -152,22 +152,22 @@ export default {
             ],
             slides: [
                 {
-                    title: "熊",
+                    title: "Bear family",
                     src: require("../assets/banner/0.jpg"),
                     href: "./image0"
                 },
                 {
-                    title: "狗",
+                    title: "Ice bear",
                     src: require("../assets/banner/1.jpg"),
                     href: "./image1"
                 },
                 {
-                    title: "猫",
+                    title: "Grizzly",
                     src: require("../assets/banner/2.jpg"),
                     href: "./image2"
                 },
                 {
-                    title: "金毛",
+                    title: "Panda",
                     src: require("../assets/banner/3.jpg"),
                     href: "./image3"
                 },
@@ -182,6 +182,7 @@ $white: #fff;
 $left: left;
     .leftNav{
         background: $white;
+        padding-bottom: 88px;
     }
     .bigTitle{
         background: #67C23A;

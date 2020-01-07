@@ -1,6 +1,6 @@
 <template>
-    <div class="banner" @mouseover="clearInv" >
-        <div class="slideClass">
+    <div class="slide-show" @mouseover="clearInv" @mouseout="runInv">
+        <div class="slide-img">
             <a :href="slides[nowIndex].href">
                 <transition name="slide-trans">
                     <img v-if="isShow" :src="slides[nowIndex].src">
@@ -11,14 +11,14 @@
             </a>
         </div>
         <h2>{{slides[nowIndex].title}}</h2>
-        <ul>
-            <li @click="goto(nextIndex)">→</li>
+        <ul class="slide-pages">
+            <li @click="goto(prevIndex)">&lt;</li>
             <li>
                 <a :class="{checked: index === nowIndex}" v-for="(item, index) in slides" :key="index" @click="goto(index)">
                     {{index+1}}
                 </a>
             </li>
-            <li @click="goto(prevIndex)">←</li>
+            <li @click="goto(nextIndex)">&gt;</li>
         </ul>
     </div>
 </template>
@@ -46,7 +46,7 @@ export default {
             setTimeout(()=>{
                 this.isShow  = true;
                 this.nowIndex = index;
-            }, 1000)
+            }, 10)
         },
         runInv (){//定时函数
             this.invId = setInterval(()=>{
@@ -82,59 +82,57 @@ export default {
 
 <style lang="scss" scoped>
     .slide-trans-enter-active{
-        transition: all 1s;
+        transition: all .5s;
     }
     .slide-trans-enter{
         transform: translateX(822px);
     }
     .slide-trans-old-leave-active{
-        transition: all 1s;
+        transition: all .5s;
         transform: translateX(-822px);
     }
-    .slide-trans-enter, .slide-trans-leave-to{
-        transform: translateX(0px);
-    }
-    .banner {
+    .slide-show {
         position: relative;
+        height: 400px;
+        overflow: hidden;
     }
-    .slideClass{
+    .slide-img{
         white-space: nowrap;
         overflow: hidden;
         height:400px;
     }
-    .slideClass a{
-        position: relative;
+    .slide-img img{
         width: 100%;
-        height: 100%;
-        display: inline-block;
-    }
-    .banner img{
-        width: 100%;
-        height: 100%;
-    }
-    .banner ul {
         position: absolute;
-        bottom: 0;
-        right: 0;
-        margin: 0;
-        width: 100%;
+        top: 0;
     }
-    .banner ul li{
-        float: right;
-        padding: 2px 5px;
-        background: rgba($color: #000000, $alpha: .2);
-        margin: 0 5px;
+    .slide-show h2 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        color: #fff;
+        background: #000;
+        opacity: .5;
+        bottom: 0;
+        height: 30px;
+        text-align: left;
+        padding-left: 15px;
+    }
+    .slide-pages {
+        position: absolute;
+        bottom: 10px;
+        right: 15px;
+    }
+    .slide-pages li{
+        display: inline-block;
+        padding: 0 10px;
+        cursor: pointer;
+        color: #fff;
         &:hover{
             cursor: pointer;
         }
     }
-    .banner h2{
-        position: absolute;
-        left: 0;
-        top: 0;
-        padding: 0 20px;
-    }
-    .banner ul li a{
+    .slide-pages li a{
         display: inline-block;
         padding: 0 5px;
         margin: 0 5px;
@@ -143,7 +141,7 @@ export default {
             background: sandybrown;
         }
     }
-    .banner ul li a.checked{
+    .slide-pages li a.checked{
         color: red;
         text-decoration: underline;
     }
