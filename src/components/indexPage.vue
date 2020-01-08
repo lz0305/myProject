@@ -27,7 +27,7 @@
             </el-col>
             <el-col :md="17" :push="1">
                 <div class="right">
-                    <slideShow :slides="slides"></slideShow>
+                    <slideShow :slides="slides" @onchange="doSomeThingOnSlidesChange"></slideShow>
                     <el-row :md="24" class="productList">
                         <el-col :md="11" 
                         :class="[index%2 != 0?'el-col-offset-2':'']" 
@@ -54,6 +54,11 @@ export default {
     },
     components: {
         slideShow
+    },
+    methods: {
+        doSomeThingOnSlidesChange ( index ) {
+            console.log("run slides--------" + index)     
+        }   
     },
     data() {
         return {
