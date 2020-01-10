@@ -37,7 +37,7 @@
                                 <dt><img :src="item.img"></dt>
                                 <dd class="title">{{item.title}}</dd>
                                 <dd class="jieshao">{{item.jieshao}}</dd>
-                                <dd class="btn" :data-id="item.id">立即购买</dd>
+                                <dd class="btn" :data-id="item.id"><router-link :to="item.src" tag="a">立即购买</router-link></dd>
                             </dl>
                         </el-col>
                     </el-row>
@@ -56,8 +56,8 @@ export default {
         slideShow
     },
     methods: {
-        doSomeThingOnSlidesChange ( index ) {
-            console.log("run slides--------" + index)     
+        doSomeThingOnSlidesChange (  ) {
+            
         }   
     },
     data() {
@@ -68,20 +68,20 @@ export default {
                     list: [
                         {
                             title: '数据统计',
-                            url: 'a'
+                            url: 'detail'
                         },
                         {
                             title: '数据预测',
-                            url: 'a',
+                            url: 'detail',
                             hot: true
                         },
                         {
                             title: '流量分析',
-                            url: 'a'
+                            url: 'detail'
                         },
                         {
                             title: '广告发布',
-                            url: 'a'
+                            url: 'detail'
                         }
                     ]
                 },
@@ -134,25 +134,29 @@ export default {
                     id: "1231",
                     title: "开放产品",
                     img: require("../assets/product/0.jpg"),
-                    jieshao: "开放产品是一种开放产品"
+                    jieshao: "开放产品是一种开放产品",
+                    src: '/detail'
                 },
                 {
                     id: "20",
                     title: "品牌营销",
                     img: require("../assets/product/1.jpg"),
-                    jieshao: "品牌营销品牌营销品牌营销"
+                    jieshao: "品牌营销品牌营销品牌营销",
+                    src: '/detail'
                 },
                 {
                     id: "14",
                     title: "使命必达",
                     img: require("../assets/product/2.jpg"),
-                    jieshao: "使命必达使命必达使命必达"
+                    jieshao: "使命必达使命必达使命必达",
+                    src: '/detail'
                 },
                 {
                     id: "3458",
                     title: "勇攀高峰",
                     img: require("../assets/product/3.jpg"),
-                    jieshao: "勇攀高峰勇攀高峰勇攀高峰"
+                    jieshao: "勇攀高峰勇攀高峰勇攀高峰",
+                    src: '/detail'
                 }
             ],
             slides: [
@@ -182,7 +186,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 $white: #fff;
 $left: left;
     .leftNav{
@@ -252,5 +256,9 @@ $left: left;
         background: #67C23A;
         text-align: center;
         color: $white;
+    }
+    .product dd.btn a{
+        color: $white;
+        text-decoration: none;
     }
 </style>
