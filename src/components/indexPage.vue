@@ -68,20 +68,20 @@ export default {
                     list: [
                         {
                             title: '数据统计',
-                            url: 'detail'
+                            url: '/detail'
                         },
                         {
                             title: '数据预测',
-                            url: 'detail',
+                            url: '/detail',
                             hot: true
                         },
                         {
                             title: '流量分析',
-                            url: 'detail'
+                            url: '/detail'
                         },
                         {
                             title: '广告发布',
-                            url: 'detail'
+                            url: '/detail'
                         }
                     ]
                 },

@@ -9,7 +9,7 @@
                         </el-col>
                         <el-col :span="24" tag="ul" class="productList">
                             <router-link 
-                                :to="{path:item.path}" v-for="(item, index) in newProject" 
+                                :to="{ path: item.path }" v-for="(item, index) in newProject" 
                                 :key="index" 
                                 tag="li"
                                 active-class="checked">
